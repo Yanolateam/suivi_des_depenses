@@ -48,9 +48,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: InfoUser::class)]
     private Collection $infoUsers;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserDepense::class)]
+    private Collection $userDepenses;
+
     public function __construct()
     {
         $this->infoUsers = new ArrayCollection();
+        $this->userDepenses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -212,4 +216,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, UserDepense>
+     */
+    public function getUserDepenses(): Collection
+    {
+        return $this->userDepenses;
+    }
+
+    public function addUserDepense(UserDepense $userDepense): self
+    {
+        if (!$this->userDepenses->contains($userDepense)) {
+            $this->userDepenses->add($userDepense);
+            $userDepense->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserDepense(UserDepense $userDepense): self
+    {
+        if ($this->userDepenses->removeElement($userDepense)) {
+            // set the owning side to null (unless already changed)
+            if ($userDepense->getUser() === $this) {
+                $userDepense->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

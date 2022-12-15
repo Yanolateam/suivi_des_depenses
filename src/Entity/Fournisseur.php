@@ -24,9 +24,13 @@ class Fournisseur
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'fournisseurs')]
     private Collection $categorie;
 
+    #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: UserDepense::class)]
+    private Collection $userDepenses;
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
+        $this->userDepenses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,6 +82,36 @@ class Fournisseur
     public function removeCategorie(Categorie $categorie): self
     {
         $this->categorie->removeElement($categorie);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserDepense>
+     */
+    public function getUserDepenses(): Collection
+    {
+        return $this->userDepenses;
+    }
+
+    public function addUserDepense(UserDepense $userDepense): self
+    {
+        if (!$this->userDepenses->contains($userDepense)) {
+            $this->userDepenses->add($userDepense);
+            $userDepense->setFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserDepense(UserDepense $userDepense): self
+    {
+        if ($this->userDepenses->removeElement($userDepense)) {
+            // set the owning side to null (unless already changed)
+            if ($userDepense->getFournisseur() === $this) {
+                $userDepense->setFournisseur(null);
+            }
+        }
 
         return $this;
     }
