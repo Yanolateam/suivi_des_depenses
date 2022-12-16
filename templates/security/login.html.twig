@@ -22,7 +22,10 @@
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
-    >
+    > 
+    <a href="{{ path('app_forgot_password_request') }}">MDP</a>
+
+
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
