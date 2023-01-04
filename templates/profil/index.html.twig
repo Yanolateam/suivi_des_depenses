@@ -21,14 +21,9 @@
 	
 		{% if app.user %}
 			<div class="mb-3">
-				{{ app.user.userIdentifier }},
-				<a href="{{ path('app_logout') }}">Déconnexion</a>
+				<p>Bonjour, {{ app.user.firstname }} bienvenue sur votre espace personnel !</p>
 			</div>
 		{% endif %}
-
-
-		<ul>
-			Test de renvoie vers profil aprés connexion!!!
-		</ul>
+		
 	</div>
 {% endblock %}
