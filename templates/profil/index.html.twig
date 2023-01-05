@@ -24,10 +24,16 @@
 				<p>Bonjour {{ app.user.firstname }},
 					bienvenue sur votre espace personnel !</p>
 			</div>
-			<button class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+			<a href="/depenses/ajout" class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 				Ajouter une dépense
-			</button>
+			</a>
 		{% endif %}
+
+		{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 
 	</div>
 {% endblock %}
