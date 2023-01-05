@@ -23,11 +23,23 @@ class DepenseFormType extends AbstractType
                 'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
                 'label'=> 'Montant',
             ])
-            ->add('engagement', RadioType::class,)
+            ->add('engagement', ChoiceType::class, [
+                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
+                'choices'  => array(
+                    'Oui' => 1,
+                    'Non' => 0,
+                ),
+                
+            ]
+            )
             ->add('datedeprelevement', DateType::class,)
             ->add('datefinengagement', DateType::class,)
-            ->add('commentaire', TextareaType::class,)
+            ->add('commentaire', TextareaType::class,  [
+                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
+                'label'=> '',
+            ])
             ->add('frequence', ChoiceType::class, [
+                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
                 'choices' => [
                     'Selection' => [
                         'Mensuel' => 'Mensuel',
@@ -37,6 +49,7 @@ class DepenseFormType extends AbstractType
             ])
 
             ->add('fournisseur', EntityType::class, options:[
+                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
                 'class' => Fournisseur::class,
                 'choice_label' => 'name',
             ])

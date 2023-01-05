@@ -18,7 +18,14 @@
 				<input type="hidden" name="remember" value="true">
 				<div class="-space-y-px rounded-md shadow-sm">
 					<div>
+						{{ form_row(depenseform.fournisseur)}}
 						{{ form_row(depenseform.montant) }}
+						{{ form_row(depenseform.engagement) }}
+						{{ form_row(depenseform.frequence) }}
+						{{ form_row(depenseform.datedeprelevement) }}
+						{{ form_row(depenseform.datefinengagement) }}
+						{{ form_row(depenseform.commentaire) }}
+
 
 
 					</div>
