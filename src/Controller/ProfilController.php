@@ -21,6 +21,14 @@ class ProfilController extends AbstractController
             'controller_name' => 'ProfilController',
         ]);
     }
+
+    #[Route('/compte', name: 'infos')]
+    public function infos(): Response
+    {
+        return $this->render('infos_profil/index.html.twig', [
+            'controller_name' => 'InfosProfilController',
+        ]);
+    }
     
     #[Route('/depense/ajout', name: 'depense_ajout')]
 
@@ -45,5 +53,8 @@ class ProfilController extends AbstractController
             'controller_name' => 'DepensesController',
             'depenseform' => $depenseform->createView(),
         ]);
+
+        
     }
+    
 }

@@ -19,21 +19,34 @@
 
 	<div class="example-wrapper">
 
+		{% if app.user and app.user.isVerified == false %}
+			<div class="alert alert-warning alert-dissmissible padd100top" role="alert">
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<div class="alert-message">
+					<p>Votre compte n'est pas encore activé, veuillez verifier votre boîte mail</p>
+					<p>Si vous ne l'avez pas reçu, <a href="{{ path('app_verify_email') }}">cliquez sur ce lien</a></p>
+				</div>
+			</div>
+		{% endif %}
+
 		{% if app.user %}
 			<div class="mb-3">
-				<p>Bonjour {{ app.user.firstname }},
-					bienvenue sur votre espace personnel !</p>
+				<p>Bonjour
+					{{ app.user.firstname }},
+										bienvenue sur votre espace personnel !</p>
 			</div>
 			<a href="/depenses/ajout" class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 				Ajouter une dépense
 			</a>
 		{% endif %}
 
+
 		{% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+
 
 	</div>
 {% endblock %}
