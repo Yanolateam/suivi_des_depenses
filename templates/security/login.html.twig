@@ -28,6 +28,12 @@
 				</div>
 			{% endif %} -->
 
+			{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        	{% endfor %}
+
 
 			<input type="hidden" name="remember" value="true">
 			<div class="-space-y-px rounded-md shadow-sm">
