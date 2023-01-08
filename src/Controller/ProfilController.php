@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/profil', name: 'profil_')]
 
+
 class ProfilController extends AbstractController
 {
     #[Route('/', name: 'index')]
