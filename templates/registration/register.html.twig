@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Inscription
 {% endblock %}
 
 {% block body %}
@@ -26,17 +26,12 @@
 				<input type="hidden" name="remember" value="true">
 				<div class="-space-y-px rounded-md shadow-sm">
 					<div>
-						{{ form_row(registrationForm.status) }}
-
-					</div>
-					<div>
-						{{ form_row(registrationForm.lastname) }}
-						{{ form_row(registrationForm.firstname) }}
-						{{ form_row(registrationForm.email) }}
-						{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-						{{ form_row(registrationForm.birthday) }}
+						{{ form_row(registrationForm.status,{'label':false}) }}
+						{{ form_row(registrationForm.lastname,{'label':false}) }}
+						{{ form_row(registrationForm.firstname,{'label':false}) }}
+						{{ form_row(registrationForm.email,{'label':false}) }}
+						{{ form_row(registrationForm.plainPassword,{'label':false}) }}
+						{{ form_row(registrationForm.birthday, {'label':false}) }}
 					</div>
 				</div>
 

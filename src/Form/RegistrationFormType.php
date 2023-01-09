@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('birthday', DateType::class,[
-                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
+                'attr' => ['placeholder' => 'Anniversaire', 'class' => 'mt-2 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
                 'years' => range(1920,2100),
                 'placeholder' => [
                     'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
@@ -38,32 +38,35 @@ class RegistrationFormType extends AbstractType
                 
             ])
             ->add('firstname', TextType::class,[
-                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
-
+                'attr' => ['placeholder' => 'Prénom', 'class' => 'mt-2 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
+                'label' => '',
             ])
             ->add('lastname', TextType::class,[
-                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
-
+                'attr' => ['placeholder' => 'Nom', 'class' => 'mt-2 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
+                'label' => 'Nom'
             ])
             ->add('email', EmailType::class,[
-                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
+                'attr' => ['placeholder' => 'Email', 'class' => 'mt-2 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
 
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'attr' => ['class' => 'ml-2'],
+                'attr' => ['placeholder' => 'Email','class' => ' mt-2 ml-2'],
                 'mapped' => false,
+                'label' => 'Accepter les conditions',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
+                
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                
                 'attr' => ['autocomplete' => 'new-password'],
-                'attr' => ['class' => 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
+                'attr' => ['placeholder' => 'Mot de passe', 'class' => 'mt-2 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'],
 
                 'constraints' => [
                     new NotBlank([
