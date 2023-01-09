@@ -1,22 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Réinitialiser votre mot de passe
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    <h1>Réinitialisez votre mot de passe</h1>
+	{% for flash_error in app.flashes('reset_password_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
 
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address and we will send you a
-                link to reset your password.
-            </small>
-        </div>
+	<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+		<div class="w-full max-w-md space-y-8">
+			<div>
+				<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+				<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Réinitialisez votre mot de passe</h2>
+				<p class="mt-2 text-center text-sm text-gray-600">
+					Ou
+					<a href="/connexion" class="font-medium text-indigo-600 hover:text-indigo-500">Déja un compte ? Connecter vous !</a>
+				</p>
+			</div>
+			<form class="mt-8 space-y-6" action="#" method="POST">
+				{{ form_start(requestForm) }}
+				<input type="hidden" name="remember" value="true">
+				<div class="-space-y-px rounded-md shadow-sm">
+					<div>
+						
+						{{ form_row(requestForm.email,{'label':false}) }}
+						<div>
+							<small>
+								Entrez votre adresse e-mail et nous vous enverrons un
+											                lien pour réinitialiser votre mot de passe.
+							</small>
+						</div>
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+						<span class="absolute inset-y-0 left-0 flex items-center pl-3">
 
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+							<svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"/>
+							</svg>
+						</span>
+						Envoyer
+					</button>
+				</div>
+				{{ form_end(requestForm) }}
+			</form>
+		</div>
+	</div>
 {% endblock %}
