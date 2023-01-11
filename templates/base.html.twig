@@ -6,7 +6,6 @@
 			{% block title %}{% endblock %}
 		</title>
 		{% block stylesheets %}
-			<script src="https://cdn.tailwindcss.com"></script>
 
 		{% endblock %}
 	</head>
@@ -56,8 +55,8 @@
 								</svg>
 							</button>
 							<a href="{{ path('app_logout')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Déconnexion</a>
-							<a href="{{ path('profil_index')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
-							<a href="{{ path('profil_infos')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon compte</a>
+							<a href="{{ path('profil_index', {id:app.user.id})}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
+							<a href="{{ path('profil_infos', {id:app.user.id})}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon compte</a>
 							<div class="relative ml-3">
 								<div>
 									<button type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -73,21 +72,10 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="sm:hidden" id="mobile-menu">
-				<div class="space-y-1 px-2 pt-2 pb-3">
-
-					<a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-
-					<a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-					<a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-					<a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
-				</div>
-			</div>
 		</nav>
 		{% block body %}{% endblock %}
-		{% block javascripts %}{% endblock %}
+		{% block javascripts %}
+			<script src="https://cdn.tailwindcss.com"></script>
+		{% endblock %}
 	</body>
 </html>
