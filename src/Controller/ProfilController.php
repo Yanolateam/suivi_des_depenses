@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\UserDepense;
 use App\Form\DepenseFormType;
+use App\Repository\UserDepenseRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,14 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfilController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(UserDepenseRepository $UserDepenseRepository): Response
     {
         return $this->render('profil/index.html.twig', [
-            'controller_name' => 'ProfilController',
+            'userdepenses' => $UserDepenseRepository->findBy([],
+            ['commentaire' => 'asc']
+           )
         ]);
     }
 
     #[Route('/compte', name: 'infos')]
+
     public function infos(): Response
     {
         return $this->render('infos_profil/index.html.twig', [
@@ -45,6 +50,7 @@ class ProfilController extends AbstractController
         if ($depenseform->isSubmitted() && $depenseform->isValid()) {
             $em->persist($depense);
             $em->flush();
+            
 
             $this->addFlash('success', 'Dépense ajouter');    
             return $this->redirectToRoute('profil_index');
